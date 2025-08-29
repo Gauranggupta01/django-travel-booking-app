@@ -141,6 +141,7 @@ RAZORPAY_KEY_ID = 'rzp_test_RB1vHx8qD7aMo4'  # Your Key ID
 RAZORPAY_KEY_SECRET = 'L1AloBMqd80xZNjBKivBHbOX'      # Your Key Secret
 
 STATIC_URL = 'static/'
+LOGIN_URL = 'login'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

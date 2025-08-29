@@ -90,7 +90,7 @@ def profile(request):
     else:
         form = UserProfileForm(instance=request.user)
     return render(request, 'travel/profile.html', {'form': form})
-
+@login_required
 def travel_options(request):
     options = TravelOption.objects.all()
     travel_type = request.GET.get('type')
