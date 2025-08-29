@@ -1,0 +1,106 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+<div class="container page-container">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="background: #f9fbff;">
+                <div class="row g-0">
+                    <!-- Booking Content -->
+                    <div class="col-12 d-flex flex-column">
+                        <div class="card-body p-5">
+                            <!-- Title -->
+                            <h2 class="card-title text-center mb-4 fw-bold text-primary">Booking Details</h2>
+                            
+                            <!-- Travel Info -->
+                            <div class="text-center mb-4 p-3 rounded-3" style="background: #e6f2ff;">
+                                <h5 class="fw-semibold">{{ travel_option.travel_type }}: {{ travel_option.source }} → {{ travel_option.destination }}</h5>
+                                <p class="text-muted mb-1"><i class="bi bi-calendar-event"></i> {{ travel_option.date_time|date:"F j, Y, P" }}</p>
+                                <p class="fs-5 mb-0">Price per seat: 
+                                    <span id="price-per-seat" class="fw-bold text-success" data-price="{{ travel_option.price }}">
+                                        ${{ travel_option.price }}
+                                    </span>
+                                </p>
+                            </div>
+
+                            <!-- Booking Form -->
+                            <form method="post" class="mt-4">
+                                {% csrf_token %}
+                                <div class="form-section mb-4">
+                                    {{ form.as_p }}
+                                </div>
+
+                                <hr class="my-4">
+
+                                <!-- Total Price -->
+                                <div class="text-center mb-4">
+                                    <h4 class="fw-bold text-dark">
+                                        Total Price: <span id="total-price" class="fw-bold text-success">$0.00</span>
+                                    </h4>
+                                </div>
+
+                                <!-- Submit -->
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg fw-semibold shadow-sm">
+                                        Proceed to Payment
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+/* Card Hover */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Styling */
+form input, form select, form textarea {
+    background-color: #fff !important;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+    transition: all 0.2s ease-in-out;
+}
+form input:focus, form select:focus, form textarea:focus {
+    border-color: #4da6ff;
+    box-shadow: 0 0 0 0.2rem rgba(77, 166, 255, 0.25);
+}
+
+/* Button */
+.btn-primary {
+    background: linear-gradient(90deg, #4da6ff, #1a75ff);
+    border: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+    background: linear-gradient(90deg, #1a75ff, #0047b3);
+    transform: scale(1.02);
+}
+
+/* Title */
+.card-title {
+    letter-spacing: 0.5px;
+}
+
+/* Travel Info */
+.text-center h5 {
+    color: #004085;
+}
+
+/* Divider */
+hr {
+    border-top: 2px dashed #ccc;
+}
+</style>
+{% endblock %}

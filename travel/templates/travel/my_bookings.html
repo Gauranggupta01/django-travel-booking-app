@@ -1,0 +1,63 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+<div class="container page-container">
+    <h2 class="mb-5 text-center fw-bold">My Bookings</h2>
+    {% for booking in bookings %}
+    <div class="card mb-4 shadow-lg booking-card status-{{ booking.status|lower }} border-0 rounded-4 overflow-hidden">
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5 class="card-title fw-bold mb-1">
+                        {{ booking.travel_option.travel_type }}: {{ booking.travel_option.source }} → {{ booking.travel_option.destination }}
+                    </h5>
+                    <p class="card-text text-muted mb-0">Booked on: {{ booking.booking_date|date:"F j, Y" }}</p>
+                </div>
+                <span class="badge rounded-pill fs-6 status-badge-{{ booking.status|lower }}">
+                    {{ booking.status }}
+                </span>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="card-text mb-2"><strong>Seats:</strong> {{ booking.number_of_seats }}</p>
+                    <p class="card-text mb-2"><strong>Total Price:</strong> <span class="fw-bold text-success">${{ booking.total_price }}</span></p>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                    {% if booking.status == 'Confirmed' %}
+                        <a href="{% url 'cancel_booking' booking.booking_id %}" class="btn btn-outline-danger btn-sm px-4">
+                            Cancel Booking
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="alert alert-info text-center py-4 rounded-3 shadow-sm">
+        You have no bookings yet.
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+.booking-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.booking-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.status-badge-confirmed {
+    background-color: #198754 !important;
+    color: #fff;
+}
+.status-badge-pending {
+    background-color: #ffc107 !important;
+    color: #000 !important;
+}
+.status-badge-cancelled {
+    background-color: #6c757d !important;
+    color: #fff;
+}
+</style>
+{% endblock %}

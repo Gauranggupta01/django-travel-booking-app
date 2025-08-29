@@ -1,0 +1,24 @@
+<!-- travel/templates/travel/otp_verify.html -->
+
+{% extends 'travel/base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-lg">
+            <div class="card-body p-5">
+                <h2 class="card-title text-center mb-4">Enter Your OTP</h2>
+                <p class="text-center text-muted">Please check your email for the 6-digit code we just sent you.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input type="text" name="otp" class="form-control form-control-lg text-center" placeholder="_ _ _ _ _ _" maxlength="6" required>
+                    </div>
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Verify & Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

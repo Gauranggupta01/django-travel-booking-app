@@ -1,0 +1,64 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+<style>
+    /* Background image for login */
+    .auth-page {
+        position: relative;
+        min-height: 100vh;
+        background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1000px;
+    }
+    .auth-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+    }
+    /* Glassmorphism Card with 3D hover */
+    .auth-card {
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        transform: rotateY(6deg);
+        transition: all 0.6s ease;
+    }
+    .auth-card:hover {
+        transform: rotateY(0deg) scale(1.04);
+        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.35);
+    }
+    .auth-card h1 {
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+</style>
+
+<div class="auth-page login-page text-white">
+    <div class="auth-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
+            <div class="col-lg-5">
+                <div class="card auth-card text-white shadow-lg border-0 rounded-4">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <h1 class="h4">Welcome Back!</h1>
+                        </div>
+                        <form method="post" class="user">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg shadow">Login</button>
+                            </div>
+                        </form>
+                        <hr class="my-4 border-light">
+                        <div class="text-center">
+                            <a class="small text-white-50" href="{% url 'register' %}">Create an Account!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

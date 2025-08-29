@@ -1,0 +1,14 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <div class="card shadow-lg">
+            <div class="card-body p-5">
+                <h2 class="card-title text-success mb-4">Payment Successful!</h2>
+                <p>Thank you for your payment. Your booking has been confirmed.</p>
+                <a href="{% url 'my_bookings' %}" class="btn btn-primary mt-3">View My Bookings</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

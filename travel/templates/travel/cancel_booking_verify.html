@@ -1,0 +1,24 @@
+<!-- travel/templates/travel/cancel_booking_verify.html (New File) -->
+
+{% extends 'travel/base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-lg">
+            <div class="card-body p-5">
+                <h2 class="card-title text-center mb-4">Confirm Cancellation</h2>
+                <p class="text-center text-muted">Please enter the 6-digit OTP sent to your email to finalize the cancellation.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input type="text" name="otp" class="form-control form-control-lg text-center" placeholder="_ _ _ _ _ _" maxlength="6" required>
+                    </div>
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-danger btn-lg">Verify & Cancel Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
