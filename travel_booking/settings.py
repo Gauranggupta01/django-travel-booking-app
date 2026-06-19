@@ -151,7 +151,7 @@ RAZORPAY_KEY_ID = 'rzp_test_RB1vHx8qD7aMo4'  # Your Key ID
 RAZORPAY_KEY_SECRET = 'L1AloBMqd80xZNjBKivBHbOX'      # Your Key Secret
 
 STATIC_URL = 'static/'
-static_root = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 LOGIN_URL = 'login'
 
 # Default primary key field type
