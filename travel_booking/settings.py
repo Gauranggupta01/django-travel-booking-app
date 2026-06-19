@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)dbz5r-4xxo_50)$@g-70tj&d3_n74+pev4tf96&gpl4^%^n!4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["django-travel-booking-app.onrender.com"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -150,6 +151,7 @@ RAZORPAY_KEY_ID = 'rzp_test_RB1vHx8qD7aMo4'  # Your Key ID
 RAZORPAY_KEY_SECRET = 'L1AloBMqd80xZNjBKivBHbOX'      # Your Key Secret
 
 STATIC_URL = 'static/'
+static_root = BASE_DIR / 'staticfiles'
 LOGIN_URL = 'login'
 
 # Default primary key field type
